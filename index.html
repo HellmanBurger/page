@@ -3,47 +3,106 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redireccionando...</title>
-    <!-- Redirección automática inmediata -->
-    <meta http-equiv="refresh" content="0; url=https://www.instagram.com/elhellman._/">
-    <link rel="canonical" href="https://www.instagram.com/elhellman._/">
+    <title>El Hellman</title>
     <style>
         body {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: #f6ca15; /* Amarillo exacto de tu logo */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            text-align: center;
+            overflow: hidden;
         }
-        .container {
+
+        /* Contenedor principal minimalista */
+        .card {
+            text-align: center;
             padding: 20px;
         }
-        p {
-            font-size: 18px;
-            margin-bottom: 15px;
-            opacity: 0.8;
+
+        /* Título sólido que contrasta con el vidrio */
+        h1 {
+            color: #1a1a1a;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 38px;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
         }
-        a {
-            color: #E1306C; /* Color rosa oficial de Instagram */
+
+        /* BOTÓN LIQUID GLASS INTERACTIVO */
+        .glass-btn {
+            display: inline-block;
+            position: relative;
+            padding: 18px 45px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
             text-decoration: none;
-            font-weight: bold;
-            border-bottom: 2px solid #E1306C;
-            padding-bottom: 2px;
-            transition: opacity 0.2s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            
+            /* Efecto cristal líquido base */
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
+            /* Bordes curvos y fluidos de iOS */
+            border-radius: 30px;
+            
+            /* Fronteras cristalinas con sutil luz */
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            
+            /* Sombras suaves e hidrofóbicas para simular volumen líquido */
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.08),
+                inset 0 4px 4px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -4px 6px 0 rgba(0, 0, 0, 0.03);
+                
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
         }
-        a:hover {
-            opacity: 0.8;
+
+        /* Reflejo brillante superior (Gloss) */
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+            pointer-events: none;
+        }
+
+        /* Efectos táctiles fluidos */
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 15px 35px 0 rgba(0, 0, 0, 0.12),
+                inset 0 4px 8px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-btn:active {
+            transform: translateY(1px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 4px 12px 0 rgba(0, 0, 0, 0.05),
+                inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <p>Redireccionando al sitio...</p>
-        <p>Si no ingresas automáticamente, <a href="https://www.instagram.com/elhellman._/">haz clic aquí</a>.</p>
+
+    <div class="card">
+        <h1>EL HELLMAN</h1>
+        <!-- Botón con redirección manual al hacer clic -->
+        <a href="https://instagram.com" class="glass-btn">Ver Menú</a>
     </div>
+
 </body>
 </html>
