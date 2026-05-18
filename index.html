@@ -3,105 +3,222 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Hellman</title>
+    <title>El Hellman - Oficial</title>
     <style>
+        :root {
+            --brand-color: #f6ca15; /* Amarillo El Hellman */
+            --dark-color: #121212;  /* Negro premium */
+        }
+
         body {
-            background-color: #f6ca15; /* Amarillo exacto de tu logo */
+            background-color: var(--brand-color);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Contenedor principal minimalista */
+        /* Iluminación de fondo premium ambiental */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            top: -25%;
+            left: -25%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Viñeta oscura en las esquinas para dar profundidad estilo cine */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Contenedor central */
         .card {
             text-align: center;
-            padding: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            width: 100%;
+            max-width: 340px;
+            box-sizing: border-box;
         }
 
-        /* Título sólido que contrasta con el vidrio */
-        h1 {
-            color: #1a1a1a;
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 38px;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
+        /* Logotipo optimizado */
+        .logo {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.12));
+            animation: floating 4s ease-in-out infinite; /* Sutil movimiento orgánico */
+        }
+
+        /* Eslogan sutil */
+        .slogan {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark-color);
+            letter-spacing: 3px;
             text-transform: uppercase;
+            margin-bottom: 35px;
+            opacity: 0.6;
         }
 
-        /* BOTÓN LIQUID GLASS INTERACTIVO */
+        /* BOTÓN PRINCIPAL LIQUID GLASS (INSTAGRAM) */
         .glass-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             position: relative;
-            padding: 18px 45px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 18px 30px;
             font-size: 16px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #ffffff;
             text-decoration: none;
             letter-spacing: 1px;
             text-transform: uppercase;
             
-            /* Efecto cristal líquido base */
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            /* Cristal líquido premium oscuro para que contraste con el fondo brillante */
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             
-            /* Bordes curvos y fluidos de iOS */
-            border-radius: 30px;
+            border-radius: 16px; /* Esquinas más modernas estilo iOS 16+ */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             
-            /* Fronteras cristalinas con sutil luz */
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            
-            /* Sombras suaves e hidrofóbicas para simular volumen líquido */
             box-shadow: 
-                0 8px 32px 0 rgba(0, 0, 0, 0.08),
-                inset 0 4px 4px 0 rgba(255, 255, 255, 0.3),
-                inset 0 -4px 6px 0 rgba(0, 0, 0, 0.03);
+                0 15px 35px -5px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
                 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Reflejo brillante superior (Gloss) */
         .glass-btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+            top: 0; left: 0; right: 0;
+            height: 40%;
+            background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
             pointer-events: none;
+            border-radius: 16px 16px 0 0;
         }
 
-        /* Efectos táctiles fluidos */
         .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-2px);
-            box-shadow: 
-                0 15px 35px 0 rgba(0, 0, 0, 0.12),
-                inset 0 4px 8px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-4px);
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
         }
 
         .glass-btn:active {
-            transform: translateY(1px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 
-                0 4px 12px 0 rgba(0, 0, 0, 0.05),
-                inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+            background: rgba(18, 18, 18, 0.75);
+        }
+
+        .svg-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* SECCIÓN DE BOTONES SECUNDARIOS INFERIORES */
+        .secondary-actions {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .sub-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            
+            /* Cristal líquido claro secundario */
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sub-btn:hover {
+            background: rgba(255, 255, 255, 0.45);
+            transform: translateY(-2px);
+        }
+
+        /* Animación de flotado suave para el Logo */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h1>EL HELLMAN</h1>
-        <!-- Botón con redirección manual al hacer clic -->
-        <a href="https://instagram.com/elhellman._" class="glass-btn">Ver Menú</a>
+        <!-- Logo Corporativo -->
+        <img src="logo.png" alt="El Hellman" class="logo">
+        
+        <!-- Eslogan o bajada de marca -->
+        <div class="slogan">Smash Burgers</div>
+        
+        <!-- Botón Principal: Instagram (Menú) -->
+        <a href="https://instagram.com/elhellman._" class="glass-btn">
+            <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+            Instagram
+        </a>
+
+        <!-- Accesos directos secundarios -->
+        <div class="secondary-actions">
+            <!-- BOTÓN WHATSAPP (Cambia el número abajo por el tuyo) -->
+            <a href="https://pency.app/elhellman" target="_blank" class="sub-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.849.002-2.634-1.023-5.11-2.885-6.974C16.528 1.916 14.062.889 11.43.887c-5.443 0-9.866 4.415-9.869 9.851-.001 1.747.478 3.454 1.388 4.962L1.872 21.08l5.525-1.44s-.003-.001-s-.001 0z"/>
+                </svg>
+                Pedinos
+            </a>
+            
+            <!-- BOTÓN UBICACIÓN (Cambia el enlace de Google Maps abajo) -->
+            <a href="https://maps.app.goo.gl/FEmK8AZzCGir27KX7" target="_blank" class="sub-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
+                    <path d="M12 0C7.582 0 4 3.582 4 8c0 5.25 8 16 8 16s8-10.75 8-16c0-4.418-3.582-8-8-8zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+                </svg>
+                Local
+            </a>
+        </div>
     </div>
 
 </body>
