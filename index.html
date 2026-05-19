@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <!-- Configuración para bloquear el zoom táctil y corregir el escalado en smartphones -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Viewport corregido y optimizado para evitar saltos de pantalla -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>El Hellman - Oficial</title>
     
     <!-- Icono para la pestaña del navegador -->
@@ -15,23 +15,28 @@
             --dark-color: #121212;  /* Negro premium */
         }
 
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             background-color: var(--brand-color);
+            overflow: hidden;
+            position: fixed; /* Evita que la pantalla rebote o se mueva en móviles */
+        }
+
+        body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            width: 100vw; /* Ajuste para cubrir el ancho real de pantalla */
-            margin: 0;
-            overflow: hidden;
-            position: relative;
-            touch-action: pan-y; /* Bloquea gestos raros y mantiene scroll básico */
+            /* Utiliza la altura dinámica del móvil (descuenta las barras del navegador) */
+            height: 100dvh; 
+            touch-action: none; /* Bloquea por completo cualquier tipo de scroll o zoom molesto */
         }
 
         /* Iluminación de fondo premium ambiental */
-        body::before {
-            content: '';
+        .bg-glow {
             position: absolute;
             width: 150%;
             height: 150%;
@@ -42,9 +47,8 @@
             z-index: 1;
         }
 
-        /* Viñeta oscura en las esquinas para dar profundidad estilo cine */
-        body::after {
-            content: '';
+        /* Viñeta oscura en las esquinas */
+        .bg-vignette {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%);
@@ -52,13 +56,14 @@
             z-index: 1;
         }
 
-        /* Contenedor central */
+        /* Contenedor central forzado al medio exacto */
         .card {
             text-align: center;
             padding: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             z-index: 2;
             width: 100%;
             max-width: 340px;
@@ -72,7 +77,7 @@
             height: auto;
             margin-bottom: 25px;
             filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.12));
-            animation: floating 4s ease-in-out infinite; /* Sutil movimiento orgánico */
+            animation: floating 4s ease-in-out infinite;
         }
 
         /* Eslogan sutil */
@@ -103,12 +108,11 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             
-            /* Cristal líquido premium oscuro para que contraste con el fondo brillante */
             background: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             
-            border-radius: 16px; /* Esquinas más modernas estilo iOS 16+ */
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             
             box-shadow: 
@@ -132,11 +136,6 @@
             transform: translateY(-4px);
             background: rgba(18, 18, 18, 0.95);
             box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        .glass-btn:active {
-            transform: translateY(-1px);
-            background: rgba(18, 18, 18, 0.75);
         }
 
         .svg-icon {
@@ -167,7 +166,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             
-            /* Cristal líquido claro secundario */
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -183,7 +181,6 @@
             transform: translateY(-2px);
         }
 
-        /* Animación de flotado suave para el Logo */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -193,15 +190,19 @@
 </head>
 <body>
 
+    <!-- Capas de fondo separadas para evitar conflictos de tamaño -->
+    <div class="bg-glow"></div>
+    <div class="bg-vignette"></div>
+
     <div class="card">
         <!-- Logo Corporativo -->
         <img src="logo.png" alt="El Hellman" class="logo">
         
-        <!-- Eslogan o bajada de marca -->
+        <!-- Eslogan -->
         <div class="slogan">Smash Burgers</div>
         
-        <!-- Botón Principal: Instagram (Menú) -->
-        <a href="https://instagram.com/elhellman._" class="glass-btn">
+        <!-- Botón Principal: Instagram -->
+        <a href="https://instagram.com._" class="glass-btn">
             <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
             </svg>
@@ -210,15 +211,13 @@
 
         <!-- Accesos directos secundarios -->
         <div class="secondary-actions">
-            <!-- BOTÓN PEDIDOS (Pency App) -->
-            <a href="https://pency.app/elhellman" target="_blank" class="sub-btn">
+            <a href="https://pency.app" target="_blank" class="sub-btn">
                 <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.849.002-2.634-1.023-5.11-2.885-6.974C16.528 1.916 14.062.889 11.43.887c-5.443 0-9.866 4.415-9.869 9.851-.001 1.747.478 3.454 1.388 4.962L1.872 21.08l5.525-1.44s-.003-.001-s-.001 0z"/>
                 </svg>
                 Pedidos
             </a>
             
-            <!-- BOTÓN LOCAL (Google Maps - Reemplaza con tu link real de Google) -->
             <a href="https://google.com" target="_blank" class="sub-btn">
                 <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://w3.org">
                     <path d="M12 0C7.582 0 4 3.582 4 8c0 5.25 8 16 8 16s8-10.75 8-16c0-4.418-3.582-8-8-8zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
